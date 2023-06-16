@@ -14,14 +14,6 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	BancoDeRegistradores_simulacao
 
-} {} {}} {C:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/MemoriaIntrucao.v} {1 {vlog -work work {C:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/MemoriaIntrucao.v}
-Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module MenoriaInstrucao
--- Compiling module MenoriaInstrucao_simulacao
-
-Top level modules:
-	MenoriaInstrucao_simulacao
-
 } {} {}} {C:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/PC.v} {1 {vlog -work work {C:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/PC.v}
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module PC
@@ -29,6 +21,14 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 
 Top level modules:
 	PC_simulacao
+
+} {} {}} {C:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/MemoriaIntrucao.v} {1 {vlog -work work {C:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/MemoriaIntrucao.v}
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module MenoriaInstrucao
+-- Compiling module MenoriaInstrucao_simulacao
+
+Top level modules:
+	MenoriaInstrucao_simulacao
 
 } {} {}} {C:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/UnidadeControle.v} {1 {vlog -work work {C:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/UnidadeControle.v}
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012

@@ -204,82 +204,82 @@ R8
 !s85 0
 !s101 -O0
 vULA
-Z69 !s100 lA[P?DmHIcFTdY7Q2i1403
-Z70 Ioo=czkZ;h^eNL`<<aVL<K2
-Z71 VaT`:aBA[^@4m6;Agf4;1G0
+!i10b 1
+!s100 :mnFOFdAZhXVKk:ZaPnao2
+IR6@M<oIDWeYiaNe;FHn7l0
+Z69 VaT`:aBA[^@4m6;Agf4;1G0
 R4
-Z72 w1685918076
-Z73 8C:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/ULA.v
-Z74 FC:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/ULA.v
+Z70 w1686013531
+Z71 8C:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/ULA.v
+Z72 FC:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/ULA.v
 L0 1
 R7
 r1
-31
-Z75 !s108 1685918082.572000
-Z76 !s107 C:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/ULA.v|
-Z77 !s90 -reportprogress|300|-work|work|C:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/ULA.v|
-R9
-Z78 n@u@l@a
-!i10b 1
 !s85 0
+31
+Z73 !s108 1686013539.795000
+Z74 !s107 C:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/ULA.v|
+Z75 !s90 -reportprogress|300|-work|work|C:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/ULA.v|
 !s101 -O0
+R9
+Z76 n@u@l@a
 vULA_simulacao
-Z79 I2>Ulf5D][8@aH@in3jL:d3
-Z80 VTT_g@2=V@PzRAlkXc54zH3
+!i10b 1
+Z77 !s100 jH6^4@ISoPX`<NU4eQLD61
+Z78 I6?4WD>8D?agKAk4=<cBk^3
+Z79 VTT_g@2=V@PzRAlkXc54zH3
 R4
+R70
+R71
 R72
+L0 26
+R7
+r1
+!s85 0
+31
 R73
 R74
-L0 32
-R7
-r1
-31
 R75
-R76
-R77
-R9
-Z81 n@u@l@a_simulacao
-Z82 !s100 J>hbAojf0zdYLc:>QNie@2
-!i10b 1
-!s85 0
 !s101 -O0
+R9
+Z80 n@u@l@a_simulacao
 vUnidadeControle
-!i10b 1
-!s100 hB9R6>Q9PKXEWk4b2EWR`2
-IoAV@@RJPl9_Sa1ZjUN;kK2
-Z83 VE5co1AHID7<5FC_C284AQ1
+Z81 IoAV@@RJPl9_Sa1ZjUN;kK2
+Z82 VE5co1AHID7<5FC_C284AQ1
 R4
-Z84 w1685922568
-Z85 8C:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/UnidadeControle.v
-Z86 FC:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/UnidadeControle.v
+Z83 w1685922568
+Z84 8C:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/UnidadeControle.v
+Z85 FC:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/UnidadeControle.v
 L0 1
 R7
 r1
-!s85 0
 31
-Z87 !s108 1685922590.883000
-Z88 !s107 C:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/UnidadeControle.v|
-Z89 !s90 -reportprogress|300|-work|work|C:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/UnidadeControle.v|
-!s101 -O0
+Z86 !s108 1685922590.883000
+Z87 !s107 C:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/UnidadeControle.v|
+Z88 !s90 -reportprogress|300|-work|work|C:/Users/Ulisses/Desktop/Pasta do Tymbas/Tymbas 3/UnidadeControle.v|
 R9
-Z90 n@unidade@controle
-vUnidadeControle_simulacao
+Z89 n@unidade@controle
+Z90 !s100 hB9R6>Q9PKXEWk4b2EWR`2
 !i10b 1
-!s100 <LOQf]J`nhFYmJoK>UAQb0
-I=CN]fYo[gdMVkIBadfOok0
-Z91 VO3:biI^3>`bRE:cECG2mE3
+!s85 0
+!s101 -O0
+vUnidadeControle_simulacao
+Z91 I=CN]fYo[gdMVkIBadfOok0
+Z92 VO3:biI^3>`bRE:cECG2mE3
 R4
+R83
 R84
 R85
-R86
-L0 224
+Z93 L0 224
 R7
 r1
-!s85 0
 31
+R86
 R87
 R88
-R89
-!s101 -O0
 R9
-Z92 n@unidade@controle_simulacao
+Z94 n@unidade@controle_simulacao
+Z95 !s100 <LOQf]J`nhFYmJoK>UAQb0
+!i10b 1
+!s85 0
+!s101 -O0

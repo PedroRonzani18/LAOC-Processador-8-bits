@@ -1,28 +1,22 @@
 module ULA (Entrada1, Entrada2, Zero, Resultado, ALUOp);
 
-  input [7:0] Entrada1, Entrada2;
+  input signed [7:0] Entrada1, Entrada2;
   input [1:0] ALUOp;
   output reg Zero;
   output reg [7:0] Resultado;
-  reg [2:0] i;
-
-  reg signed [7:0] SEntrada1, SEntrada2;
 
   always @(Entrada1, Entrada2) begin
-    SEntrada1 = Entrada1;
-    SEntrada2 = Entrada2;
-  
     case (ALUOp)
-      2'b00: Resultado = SEntrada1 + SEntrada2;
-      2'b01: Resultado = ~SEntrada1 + 1;
-      2'b10: Resultado = SEntrada1 - SEntrada2;
+      2'b00: Resultado = Entrada1 + Entrada2;
+      2'b01: Resultado = ~Entrada1 + 1;
+      2'b10: Resultado = Entrada1 - Entrada2;
       2'b11: begin 
-        Resultado = SEntrada1 - SEntrada2;
+        Resultado = Entrada1 - Entrada2;
         Resultado[6:0] = {7{Resultado[7]}};
       end
       default: ;
     endcase
-    
+
     Zero = |Resultado;
     Zero = ~Zero;
   end
