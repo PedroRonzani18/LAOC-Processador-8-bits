@@ -2,8 +2,8 @@ module UnidadeControle (Opcode, Funct, PCWrite, RegOrg1, RegOrg2, RegDst, RegWri
 
   input [1:0] Opcode;
   input [2:0] Funct;
-  output reg PCWrite, RegOrg1, RegOrg2, RegDst, RegWrite, ALUSrc1, Cond, Jump, MenWrite, MenRead, MenToReg;
-  output reg [1:0] ALUSrc2, ALUOp, JumpValue;
+  output reg PCWrite, RegOrg1, RegDst, RegWrite, ALUSrc1, Cond, Jump, MenWrite, MenRead, MenToReg;
+  output reg [1:0] ALUSrc2, ALUOp, JumpValue, RegOrg2;
 
   always @(Opcode, Funct) begin
         case (Opcode)
