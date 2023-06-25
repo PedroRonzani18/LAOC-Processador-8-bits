@@ -6,8 +6,11 @@
 `include "src/MUX2_8.v"
 `include "src/MUX3_3.v"
 `include "src/MUX3_8.v"
+`include "src/ULA.v"
+`include "src/AND.v"
+`include "src/PC.v"
 
-module nRisc(Reset, Clock, InstrucaoLida, EnderecoDados, DadoEscrito, DadoLido);
+module nRisc(Reset, Clock, EnderecoInstrucao, InstrucaoLida, EnderecoDados, DadoEscrito, DadoLido);
 
     /* Externo ao Processador*/
     input Reset, Clock;
@@ -32,8 +35,21 @@ module nRisc(Reset, Clock, InstrucaoLida, EnderecoDados, DadoEscrito, DadoLido);
     /* Extensor de Sinal */
     wire [7:0] ImediatoExtendido;
 
-    /* MUX entradas Banco de Registradores */
+    /* MUX's entradas Banco de Registradores */
     wire [2:0] SaidaMuxRegOrg1, SaidaMuxRegOrg2, SaidaMuxRegDst;
+
+    /* MUX's intermediarios caminho de dados */
+    wire [7:0] SaidaMuxJumpValue, SaidaMuxALUSrc1, SaidaMuxALUSrc2;
+
+    /* ALU */
+    wire [7:0] ResultadoALU;
+    wire ZeroALU;
+
+    /* AND */
+    wire ResultadoAND;
+
+    /* MUX's finais */
+    wire [7:0] SaidaMuxEntradaJump, SaidaMuxJump, SaidaMuxMemToReg;
 
     MUX2_3 muxRegOrg1(.Entrada0(InstrucaoLida[5:3]), 
                       .Entrada1(3'b101), 
@@ -75,7 +91,7 @@ module nRisc(Reset, Clock, InstrucaoLida, EnderecoDados, DadoEscrito, DadoLido);
     BancoDeRegistradores bancoDeRegistradores(.RegLido1(SaidaMuxRegOrg1), 
                                               .RegLido2(SaidaMuxRegOrg2), 
                                               .RegEscr(SaidaMuxRegDst), 
-                                              .DadoEscr(DadoEscr), 
+                                              .DadoEscr(SaidaMuxMemToReg), 
                                               .Dado1(Dado1), 
                                               .Dado2(Dado2), 
                                               .RegWrite(RegWrite), 
@@ -87,8 +103,67 @@ module nRisc(Reset, Clock, InstrucaoLida, EnderecoDados, DadoEscrito, DadoLido);
                                     );
                                     
     Somador Somador1(.Entrada1(PCOut), 
-                     .Entrada2(8'b11111111), 
+                     .Entrada2(8'b00000001), 
                      .Resultado(ResultadoSomador1)
                     );
+
+    MUX3_8 muxJumpValue(.Entrada0(ImediatoExtendido), 
+                        .Entrada1(Dado1), 
+                        .Entrada2(8'b00000001), 
+                        .Controle(JumpValue), 
+                        .Resultado(SaidaMuxJumpValue));
+
+    MUX2_8 muxALUSrc1 (.Entrada0(8'b00000000), 
+                       .Entrada1(Dado1), 
+                       .Controle(ALUSrc1), 
+                       .Resultado(SaidaMuxALUSrc1)
+                      );
+
+    MUX3_8 muxALUSrc2 (.Entrada0(Dado2), 
+                       .Entrada1({3'b000, InstrucaoLida[5:1]}), 
+                       .Controle(ALUSrc2), 
+                       .Resultado(SaidaMuxALUSrc2)
+                      );
+
+    Somador Somador2 (.Entrada1(ResultadoSomador1), 
+                      .Entrada2(SaidaMuxJumpValue), 
+                      .Resultado(ResultadoSomador2)
+                     );
+
+    ULA ula (.Entrada1(SaidaMuxALUSrc1), 
+             .Entrada2(SaidaMuxALUSrc2), 
+             .Zero(ZeroALU), 
+             .Resultado(ResultadoALU), 
+             .ALUOp(ALUOp)
+            );
+
+    AND andCond (.Entrada1(Cond), 
+             .Entrada2(ZeroALU), 
+             .Resultado(ResultadoAND)
+            );
+            
+    MUX2_8 muxEntradaJump (.Entrada0(ResultadoSomador2), 
+                           .Entrada1(ResultadoSomador1), 
+                           .Controle(ResultadoAND), 
+                           .Resultado(SaidaMuxEntradaJump)
+                          );
+
+    MUX2_8 muxJump (.Entrada0(ResultadoSomador1), 
+                    .Entrada1(SaidaMuxEntradaJump), 
+                    .Controle(Jump), 
+                    .Resultado(SaidaMuxJump)
+                   );
+
+    MUX2_8 muxMemToReg (.Entrada0(ResultadoALU), 
+                        .Entrada1(DadoLido), 
+                        .Controle(MemToReg), 
+                        .Resultado(SaidaMuxMemToReg)
+                       );
+
+    PC pc1 (.PCIn(SaidaMuxJump), 
+            .PCOut(PCOut), 
+            .PCWrite(PCWrite), 
+            .Clock(Clock)
+            );
 
 endmodule

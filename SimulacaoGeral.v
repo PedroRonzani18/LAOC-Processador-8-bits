@@ -12,14 +12,44 @@ module SimulacaoGeral;
     /* Memoria de Dados */
     wire[7:0] EnderecoDados, DadoEscrito, DadoLido;
 
-    nRisc nrisc(Reset, Clock, InstrucaoLida, EnderecoDados, DadoEscrito, DadoLido);
-    MemoriaDados memoriaDados(EnderecoDados, DadoEscrito, DadoLido, nrisc.MemWrite, nrisc.MemRead, Clock);
-    MemoriaInstrucao memoriaInstrucao(EnderecoInstrucao, InstrucaoLida, Clock);
+    nRisc nrisc(.Reset(Reset), 
+                .Clock(Clock),
+                .EnderecoInstrucao(EnderecoInstrucao),
+                .InstrucaoLida(InstrucaoLida), 
+                .EnderecoDados(EnderecoDados), 
+                .DadoEscrito(DadoEscrito), 
+                .DadoLido(DadoLido)
+               );
+
+    MemoriaDados memoriaDados(.Endereco(EnderecoDados), 
+                              .DadoEscr(DadoEscrito), 
+                              .DadoLido(DadoLido), 
+                              .MenWrite(nrisc.MemWrite), 
+                              .MenRead(nrisc.MemRead), 
+                              .Clock(Clock)
+                             );
+
+    MemoriaInstrucao memoriaInstrucao(.Endereco(EnderecoInstrucao), 
+                                      .Instrucao(InstrucaoLida), 
+                                      .Clock(Clock)
+                                     );
+
+    integer i;
 
     initial begin
-        Clock = 1'b1;
-        $monitor("Time=%0d Clock=%b", $time, Clock);
-        #10 $finish;
+        
+        //$monitor("Time=%0d Clock=%b, i=%0d", $time, Clock, i);
+        Clock = 0;
+
+        for( i=0; i <= 255; i=i+1) begin
+            memoriaDados.Dados[i]=0;//Inicializa a memória com 0
+
+        end
+        
+        $readmemh("dados.txt", memoriaDados.Dados); //Leitura do arquivo
+    
+        #256 $finish;
+        
     end
 
     always begin
