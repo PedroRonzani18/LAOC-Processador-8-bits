@@ -9,12 +9,12 @@ module BancoDeRegistradores (RegLido1, RegLido2, RegEscr, DadoEscr, Dado1, Dado2
   
   always @(posedge Clock) begin
     if(RegWrite) 
-      BR[RegEscr] <= DadoEscr;
+      BR[RegEscr] = DadoEscr;
   end
   
   always @(negedge Clock) begin
-    Dado1 <= BR[RegLido1];
-    Dado2 <= BR[RegLido2];
+    Dado1 = BR[RegLido1];
+    Dado2 = BR[RegLido2];
   end
 
 endmodule

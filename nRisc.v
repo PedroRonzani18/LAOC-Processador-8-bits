@@ -10,13 +10,13 @@
 `include "src/AND.v"
 `include "src/PC.v"
 
-module nRisc(Reset, Clock, EnderecoInstrucao, InstrucaoLida, EnderecoDados, DadoEscrito, DadoLido);
+module nRisc(Reset, Clock, InstrucaoLida, EnderecoDados, DadoEscrito, DadoLido);
 
     /* Externo ao Processador*/
     input Reset, Clock;
 
     /* Interligando Memorias de Instrucao e Dados ao nRisc */
-    input [7:0] EnderecoInstrucao, InstrucaoLida;
+    input [7:0] InstrucaoLida;
     input [7:0] EnderecoDados, DadoEscrito, DadoLido;
 
     /* Sinais Unidade de Controle */

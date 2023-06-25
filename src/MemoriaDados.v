@@ -4,16 +4,16 @@ module MemoriaDados (Endereco, DadoEscr, DadoLido, MenWrite, MenRead, Clock);
   input Clock, MenWrite, MenRead;
   output reg [7:0] DadoLido;
 
-  reg [7:0] Dados [255:0];
+  reg [7:0] Dados [0:255];
 
   always @(posedge Clock) begin
     if(MenWrite)
-      Dados[Endereco] <= DadoEscr;
+      Dados[Endereco] = DadoEscr;
   end
 
   always @(negedge Clock) begin
     if(MenRead)
-      DadoLido <= Dados[Endereco];
+      DadoLido = Dados[Endereco];
   end
 
 endmodule

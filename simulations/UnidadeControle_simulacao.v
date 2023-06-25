@@ -17,9 +17,9 @@ module UnidadeControle_simulacao;
 
   always begin
     for(i = 0; i < 4; i = i + 1) begin
-        Opcode <= i;
+        Opcode = i;
         for(j = 0; j < 8; j = j + 1) begin
-            Funct <= j;
+            Funct = j;
             #1 ;
         end
     end

@@ -4,10 +4,11 @@ module MemoriaInstrucao (Endereco, Instrucao, Clock);
   input Clock;
   output reg [7:0] Instrucao;
 
-  reg [7:0] Instrucoes [255:0];
+  reg [7:0] Instrucoes [0:255];
 
   always @(negedge Clock) begin
-    Instrucao <= Instrucoes[Endereco];
+    //$display("entrei: %b %b", Endereco, Instrucoes[Endereco]);
+    Instrucao = Instrucoes[Endereco];
   end
 
 endmodule

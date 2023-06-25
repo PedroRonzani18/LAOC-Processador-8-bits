@@ -8,11 +8,11 @@ module PC (PCIn, PCOut, PCWrite, Clock);
 
   always @(posedge Clock) begin
     if(PCWrite)
-      PC <= PCIn;
+      PC = PCIn;
   end
 
   always @(negedge Clock) begin
-    PCOut <= PC;
+    PCOut = PC;
   end
 
 endmodule
