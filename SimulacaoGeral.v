@@ -6,6 +6,8 @@ module SimulacaoGeral;
 
     reg Clock, Reset;
 
+    reg[15:0] counter;
+
     /* Memoria de Instrucao */
     wire[7:0] InstrucaoLida;
 
@@ -37,7 +39,8 @@ module SimulacaoGeral;
 
     initial begin
         nrisc.pc1.PC = 8'b00000000;
-        Clock = 0;
+        Clock = 1;
+        counter = 10;
         
         $readmemb("dados.txt", memoriaDados.Dados); //Leitura dos dados
         $readmemb("instrucoes.txt", memoriaInstrucao.Instrucoes); // leitura das instrucoes
@@ -49,11 +52,17 @@ module SimulacaoGeral;
     end
 
     initial begin
-        $monitor("%0d | i=%b | ro1=%b | rd=%b | sro1=%b | br[111]=%b | d1=%b | rr=%b | clk=%0d",
-                  $time, InstrucaoLida, nrisc.RegOrg1, nrisc.SaidaMuxRegDst, nrisc.SaidaMuxRegOrg1, nrisc.bancoDeRegistradores.BR[3'b111],
-    nrisc.Dado1, nrisc.bancoDeRegistradores.BR[3'b101], Clock);
+        $monitor("%0d | i=%b| sp=%b | rr=%b | r0=%b | r2=%b | r3=%b | %0d",
+                  counter, InstrucaoLida,
+                  
+                  nrisc.bancoDeRegistradores.BR[3'b111],
+                  nrisc.bancoDeRegistradores.BR[3'b101],
+                  nrisc.bancoDeRegistradores.BR[3'b000],
+                  nrisc.bancoDeRegistradores.BR[3'b010],
+                  nrisc.bancoDeRegistradores.BR[3'b011],
+                  Clock);
 
-        #70 $finish;
+        #500 $finish;
     end
 
     always begin
@@ -62,5 +71,13 @@ module SimulacaoGeral;
             $finish;
          #1; Clock = ~Clock;
     end
+
+
+    always@(posedge Clock)
+    begin
+        $display(" ");
+    counter = counter + 1;
+    end
+	
 
 endmodule

@@ -85,7 +85,7 @@ module nRisc(Reset, Clock, InstrucaoLida, EnderecoDados, DadoEscrito, DadoLido);
                                      .Cond(Cond), 
                                      .Jump(Jump), 
                                      .MenWrite(MenWrite), 
-                                     .MenRead(MenRead), 
+                                     .MenRead(MemRead), 
                                      .MenToReg(MemToReg)
                                     );
 

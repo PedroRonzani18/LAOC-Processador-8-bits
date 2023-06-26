@@ -18,6 +18,8 @@ module BancoDeRegistradores (RegLido1, RegLido2, RegEscr, DadoEscr, Dado1, Dado2
     Dado1 = BR[RegLido1];
     Dado2 = BR[RegLido2];
 
+    // $display("Valor[010]: %b", BR[3'b010]);
+    // $display("Valor[011]: %b", BR[3'b011]);
     // for (integer i = 0; i <= 7; i = i + 1) begin
     //     $display("Valor[%0d]: %b", i, BR[i]);
     // end

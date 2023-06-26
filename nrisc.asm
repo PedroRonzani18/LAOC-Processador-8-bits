@@ -1,29 +1,31 @@
 000   			# r0: tamanho do vetor
 001   			# r1: auxiliar
-010  		      # r2: maior valor
-011 			   # r3: menor valor
+010  		    # r2: maior valor
+011 			# r3: menor valor
 100   			# r4
 101   			# rr: registrador de resultado geral
-110  			   # ra
-111  			   # sp: stack pointer
+110  			# ra
+111  			# sp: stack pointer
 
 rst $sp                         # 00 111 100  # sp = 0
 lw $sp                          # 00 111 001  # rr = 0
 rst $r0                         # 00 000 100
 add $r0, $rr                    # 01 000 101  # rr = 0
-addi 1                          # 10 00001 0  # rr += 1
-add $sp, $rr                    # 01 111 101  # 
+rst rr                          # 00 101 100  # rr = 0
+add rr r0                       # 01 101 000  # rr = n
+rst sp                          # 00 111 100  # sp = 0
+add $sp, $rr                    # 01 111 101  # sp = n
 lw $sp                   	    # 00 111 001  # rr = v[n-1]
 rst $r2                  	    # 00 010 100  # r2 = 0
 add $r2, $rr             	    # 01 010 101  # r2 += v[n-1]
 rst $r3                  	    # 00 011 100  # r3 = 0
-add $r3, $rr             	    # 01 011 101  # r3 = v[n-1]
+add $r3, $rr             	    # 01 011 101  # r3 = v[n-1] # TININO
 #while:  addi 0                 # 100000  00  # rr += 0
          rst $rr               	# 00 101 100  # rr = 0
          addi 1                	# 10 00001 0  # rr += 1
          inv $rr               	# 00 101 101  # rr = -rr
-         add $r0, $rr           # 01 000 101  # r0 += -1
-         add $sp, $rr           # 01 000 101  # sp += -1
+         add $r0, $rr           # 01000101  # r0 += -1
+         add $sp, $rr           # 01111101    # sp += -1
          addi 0                 # 10 00000 0  # rr += 0
          rst $rr               	# 00 101 100  #rr = 0
          addi 31              	# 10 11111 0  # rr += 31
