@@ -17,7 +17,8 @@ module nRisc(Reset, Clock, InstrucaoLida, EnderecoDados, DadoEscrito, DadoLido);
 
     /* Interligando Memorias de Instrucao e Dados ao nRisc */
     input [7:0] InstrucaoLida;
-    input [7:0] EnderecoDados, DadoEscrito, DadoLido;
+    input [7:0] DadoLido;
+    inout [7:0] EnderecoDados, DadoEscrito;
 
     /* Sinais Unidade de Controle */
     wire PCWrite, RegOrg1, RegDst, RegWrite, Cond, Jump, MemWrite, MemRead, MemToReg, ALUSrc1;
@@ -30,7 +31,7 @@ module nRisc(Reset, Clock, InstrucaoLida, EnderecoDados, DadoEscrito, DadoLido);
     wire [7:0] ResultadoSomador1, ResultadoSomador2;
 
     /* Banco de Registradores */
-    wire [7:0] DadoEscr, Dado1, Dado2;
+    wire [7:0] Dado1, Dado2;
 
     /* Extensor de Sinal */
     wire [7:0] ImediatoExtendido;
@@ -97,6 +98,8 @@ module nRisc(Reset, Clock, InstrucaoLida, EnderecoDados, DadoEscrito, DadoLido);
                                               .RegWrite(RegWrite), 
                                               .Clock(Clock)
                                              );
+    assign EnderecoDados = Dado1;
+    assign DadoEscrito = Dado2;
 
     ExtensorDeSinal extensorDeSinal (.Entrada(InstrucaoLida[5:1]), 
                                      .Resultado(ImediatoExtendido)
@@ -121,6 +124,7 @@ module nRisc(Reset, Clock, InstrucaoLida, EnderecoDados, DadoEscrito, DadoLido);
 
     MUX3_8 muxALUSrc2 (.Entrada0(Dado2), 
                        .Entrada1({3'b000, InstrucaoLida[5:1]}), 
+                       .Entrada2(8'b00000000),
                        .Controle(ALUSrc2), 
                        .Resultado(SaidaMuxALUSrc2)
                       );
@@ -138,9 +142,9 @@ module nRisc(Reset, Clock, InstrucaoLida, EnderecoDados, DadoEscrito, DadoLido);
             );
 
     AND andCond (.Entrada1(Cond), 
-             .Entrada2(ZeroALU), 
-             .Resultado(ResultadoAND)
-            );
+                 .Entrada2(ZeroALU), 
+                 .Resultado(ResultadoAND)
+                );
             
     MUX2_8 muxEntradaJump (.Entrada0(ResultadoSomador2), 
                            .Entrada1(ResultadoSomador1), 

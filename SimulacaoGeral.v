@@ -12,14 +12,6 @@ module SimulacaoGeral;
     /* Memoria de Dados */
     wire[7:0] EnderecoDados, DadoEscrito, DadoLido;
 
-    nRisc nrisc(.Reset(Reset), 
-                .Clock(Clock),
-                .InstrucaoLida(InstrucaoLida), 
-                .EnderecoDados(EnderecoDados), 
-                .DadoEscrito(DadoEscrito), 
-                .DadoLido(DadoLido)
-               );
-
     MemoriaDados memoriaDados(.Endereco(EnderecoDados), 
                               .DadoEscr(DadoEscrito), 
                               .DadoLido(DadoLido), 
@@ -33,6 +25,14 @@ module SimulacaoGeral;
                                       .Clock(Clock)
                                      );
 
+    nRisc nrisc(.Reset(Reset), 
+                .Clock(Clock),
+                .InstrucaoLida(InstrucaoLida), 
+                .EnderecoDados(EnderecoDados), 
+                .DadoEscrito(DadoEscrito), 
+                .DadoLido(DadoLido)
+               );
+    
     integer i;
 
     initial begin
@@ -49,8 +49,9 @@ module SimulacaoGeral;
     end
 
     initial begin
-        $monitor("Time=%0d inst=%b comp=%b out=%b clk=%0d",
-                $time, InstrucaoLida, memoriaInstrucao.Instrucao, nrisc.pc1.PC, Clock);
+        $monitor("%0d | i=%b | ro1=%b | rd=%b | sro1=%b | br[111]=%b | d1=%b | rr=%b | clk=%0d",
+                  $time, InstrucaoLida, nrisc.RegOrg1, nrisc.SaidaMuxRegDst, nrisc.SaidaMuxRegOrg1, nrisc.bancoDeRegistradores.BR[3'b111],
+    nrisc.Dado1, nrisc.bancoDeRegistradores.BR[3'b101], Clock);
 
         #70 $finish;
     end
