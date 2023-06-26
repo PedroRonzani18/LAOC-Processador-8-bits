@@ -98,6 +98,8 @@ module nRisc(Reset, Clock, InstrucaoLida, EnderecoDados, DadoEscrito, DadoLido);
                                               .RegWrite(RegWrite), 
                                               .Clock(Clock)
                                              );
+    
+
     assign EnderecoDados = Dado1;
     assign DadoEscrito = Dado2;
 

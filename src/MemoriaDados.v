@@ -11,7 +11,7 @@ module MemoriaDados (Endereco, DadoEscr, DadoLido, MenWrite, MenRead, Clock);
       Dados[Endereco] = DadoEscr;
   end
 
-  always @(negedge Clock) begin
+  always @(*) begin
     if(MenRead)
       DadoLido = Dados[Endereco];
   end
