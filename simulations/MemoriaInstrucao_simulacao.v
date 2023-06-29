@@ -15,7 +15,7 @@ module MemoriaInstrucao_simulacao;
   initial begin
     $monitor("Time=%0d Endereco=%b Instrucao=%b Clock=%b",
     $time, Endereco, Instrucao, Clock);
-    #50 $finish;
+    
   end
 
   always begin

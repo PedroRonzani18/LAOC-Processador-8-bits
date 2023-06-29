@@ -8,7 +8,7 @@ module ExtensorDeSinal_simulacao;
   initial begin
     $monitor("Time=%0d Entrada=%b Resultado=%b",
       $time, Entrada, Resultado);
-    #50 $finish;
+    
   end
 
   always begin

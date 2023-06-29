@@ -34,7 +34,7 @@ module ULA_simulacao;
   initial begin
     $monitor("Time=%0d Entrada1=%b Entrada2=%b ALUOp=%b Resultado=%b Zero=%b",
       $time, Entrada1, Entrada2, ALUOp, Resultado, Zero);
-    #50 $finish;
+    
   end
 
   always begin

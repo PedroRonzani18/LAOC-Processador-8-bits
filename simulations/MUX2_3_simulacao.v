@@ -8,7 +8,7 @@ module MUX2_3_simulacao;
   initial begin
     $monitor("Time=%0d Entrada0=%b Entrada1=%b Controle=%b Resultado=%b",
     $time, Entrada0, Entrada1, Controle, Resultado);
-    #50 $finish;
+    
   end
 
   initial begin

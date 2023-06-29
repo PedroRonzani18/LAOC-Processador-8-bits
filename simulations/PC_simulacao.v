@@ -14,7 +14,7 @@ module PC_simulacao;
   initial begin
     $monitor("Time=%0d PCIn=%b PCOut=%b PCWrite=%b Clock=%b",
     $time, PCIn, PCOut, PCWrite, Clock);
-    #50 $finish;
+    
   end
 
   always begin

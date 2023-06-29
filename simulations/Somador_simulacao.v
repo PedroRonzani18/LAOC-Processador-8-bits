@@ -10,7 +10,7 @@ module Somador_simulacao;
   initial begin
     $monitor("Time=%0d Entrada1=%b Entrada2=%b Resultado=%b",
       $time, Entrada1, Entrada2, Resultado);
-    #50 $finish;
+    
   end
 
   always begin

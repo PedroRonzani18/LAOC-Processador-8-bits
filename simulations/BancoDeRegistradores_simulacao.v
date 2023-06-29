@@ -34,7 +34,7 @@ module BancoDeRegistradores_simulacao;
   initial begin
     $monitor("Time=%0d RegLido1=%b RegLido2=%b RegEscr=%b DadoEscr=%b Dado1=%b Dado2=%b RegWrite=%b Clock=%b",
     $time, RegLido1, RegLido2, RegEscr, DadoEscr, Dado1, Dado2, RegWrite, Clock);
-    #50 $finish;
+    
   end
 
   always begin

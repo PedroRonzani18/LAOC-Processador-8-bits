@@ -12,7 +12,7 @@ module UnidadeControle_simulacao;
   initial begin
     $monitor("Time=%0d Opcode=%b Funct=%b PCWrite=%b RegOrg1=%b RegOrg2=%b RegDst=%b RegWrite=%b ALUSrc1=%b ALUSrc2=%b ALUOp=%b JumpValue=%b Cond=%b Jump=%b MenWrite=%b MenRead=%b MenToReg=%b",
       $time, Opcode, Funct, PCWrite, RegOrg1, RegOrg2, RegDst, RegWrite, ALUSrc1, ALUSrc2, ALUOp, JumpValue, Cond, Jump, MenWrite, MenRead, MenToReg);
-    #50 $finish;
+    
   end
 
   always begin

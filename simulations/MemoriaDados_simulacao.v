@@ -17,7 +17,7 @@ module MemoriaDados_simulacao;
   initial begin
     $monitor("Time=%0d Endereco=%b DadoEscr=%b DadoLido=%b MenWrite=%b MenRead=%b Clock=%b",
     $time, Endereco, DadoEscr, DadoLido, MenWrite, MenRead, Clock);
-    #50 $finish;
+    
   end
 
   always begin
