@@ -45,26 +45,25 @@ module SimulacaoGeral;
         $readmemb("instrucoes.txt", memoriaInstrucao.Instrucoes); // leitura das instrucoes
     end
     
-    // initial begin
-    //     $monitor("%0d | pc=%b | i=%b| sp=%b | rr=%b | r0=%b | r1=%b | r2=%b | r3=%b | ra=%b | %0d",
-    //            counter, 
-    //            nrisc.pc1.PC,
-    //            InstrucaoLida,
-    //            nrisc.bancoDeRegistradores.BR[3'b111],
-    //            nrisc.bancoDeRegistradores.BR[3'b101],
-    //            nrisc.bancoDeRegistradores.BR[3'b000],
-    //            nrisc.bancoDeRegistradores.BR[3'b001],
-    //            nrisc.bancoDeRegistradores.BR[3'b010],
-    //            nrisc.bancoDeRegistradores.BR[3'b011],
-    //            nrisc.bancoDeRegistradores.BR[3'b110],
-    //            Clock);
-    // end
+    initial begin
+        $monitor("%0d | pc=%b | i=%b| sp=%b | rr=%b | r0=%b | r1=%b | r2=%b | r3=%b | ra=%b | %0d",
+               counter, 
+               nrisc.pc1.PC,
+               InstrucaoLida,
+               nrisc.bancoDeRegistradores.BR[3'b111],
+               nrisc.bancoDeRegistradores.BR[3'b101],
+               nrisc.bancoDeRegistradores.BR[3'b000],
+               nrisc.bancoDeRegistradores.BR[3'b001],
+               nrisc.bancoDeRegistradores.BR[3'b010],
+               nrisc.bancoDeRegistradores.BR[3'b011],
+               nrisc.bancoDeRegistradores.BR[3'b110],
+               Clock);
+    end
     
 
     always begin
         if(memoriaInstrucao.Instrucoes[nrisc.PCOut] == 8'b00000000) begin
             $display("Maior: %b | Menor: %b",nrisc.bancoDeRegistradores.BR[3'b010], nrisc.bancoDeRegistradores.BR[3'b011]);
-            $finish;
         end
          #1; Clock = ~Clock;
     end
@@ -75,6 +74,7 @@ module SimulacaoGeral;
 
     always@(posedge Clock) begin
         counter = counter + 1;
+        $display(" ");
     end
 	
 endmodule
