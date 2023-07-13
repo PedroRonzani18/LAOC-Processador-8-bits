@@ -1,3 +1,3 @@
 run:
 	@ echo "Running Processor"
-	@ iverilog SimulacaoGeral.v && ./a.out
+	@ iverilog SimulacaoGeral.v -o bin/processor && ./bin/processor

@@ -1,4 +1,4 @@
-`include "nRisc.v"
+`include "src/nRisc.v"
 `include "src/MemoriaDados.v"
 `include "src/MemoriaInstrucao.v"
 
@@ -9,10 +9,12 @@ module SimulacaoGeral;
     reg[15:0] counter;
 
     /* Memoria de Instrucao */
-    wire[7:0] InstrucaoLida;
+    wire[7:0] InstrucaoLida; // sai da mem instr
 
     /* Memoria de Dados */
-    wire[7:0] EnderecoDados, DadoEscrito, DadoLido;
+    wire[7:0] EnderecoDados, // entra na mem dados 
+        DadoEscrito, // entra na mem dados
+        DadoLido; // sai da mem dados
 
     MemoriaDados memoriaDados(.Endereco(EnderecoDados), 
                               .DadoEscr(DadoEscrito), 
@@ -41,29 +43,30 @@ module SimulacaoGeral;
         Reset = 0;
         counter = 10;
         
-        $readmemb("dados.txt", memoriaDados.Dados); //Leitura dos dados
-        $readmemb("instrucoes.txt", memoriaInstrucao.Instrucoes); // leitura das instrucoes
+        $readmemb("assets/dados.txt", memoriaDados.Dados); //Leitura dos dados
+        $readmemb("assets/instrucoes.txt", memoriaInstrucao.Instrucoes); // leitura das instrucoes
     end
     
-    initial begin
-        $monitor("%0d | pc=%b | i=%b| sp=%b | rr=%b | r0=%b | r1=%b | r2=%b | r3=%b | ra=%b | %0d",
-               counter, 
-               nrisc.pc1.PC,
-               InstrucaoLida,
-               nrisc.bancoDeRegistradores.BR[3'b111],
-               nrisc.bancoDeRegistradores.BR[3'b101],
-               nrisc.bancoDeRegistradores.BR[3'b000],
-               nrisc.bancoDeRegistradores.BR[3'b001],
-               nrisc.bancoDeRegistradores.BR[3'b010],
-               nrisc.bancoDeRegistradores.BR[3'b011],
-               nrisc.bancoDeRegistradores.BR[3'b110],
-               Clock);
-    end
-    
+    // initial 
+    //     $monitor("%0d | pc=%b | i=%b| sp=%b | rr=%b | r0=%b | r1=%b | r2=%b | r3=%b | ra=%b | %0d",
+    //            counter, 
+    //            nrisc.pc1.PC,
+    //            InstrucaoLida,
+    //            nrisc.bancoDeRegistradores.BR[3'b111],
+    //            nrisc.bancoDeRegistradores.BR[3'b101],
+    //            nrisc.bancoDeRegistradores.BR[3'b000],
+    //            nrisc.bancoDeRegistradores.BR[3'b001],
+    //            nrisc.bancoDeRegistradores.BR[3'b010],
+    //            nrisc.bancoDeRegistradores.BR[3'b011],
+    //            nrisc.bancoDeRegistradores.BR[3'b110],
+    //            Clock);
+    // 
 
     always begin
         if(memoriaInstrucao.Instrucoes[nrisc.PCOut] == 8'b00000000) begin
+            $display(" ");
             $display("Maior: %b | Menor: %b",nrisc.bancoDeRegistradores.BR[3'b010], nrisc.bancoDeRegistradores.BR[3'b011]);
+            $finish;
         end
          #1; Clock = ~Clock;
     end
@@ -74,7 +77,7 @@ module SimulacaoGeral;
 
     always@(posedge Clock) begin
         counter = counter + 1;
-        $display(" ");
+        // $display(" ");
     end
 	
 endmodule
